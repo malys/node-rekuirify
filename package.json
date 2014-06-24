@@ -1,0 +1,44 @@
+{
+    "name": "node-rekuirify",
+    "version": "0.0.0",
+    "main": "lib/node-rekuirify.js",
+    "description": "'rekuire' transform for Browserify . 'rekuire' is basically node's 'require' without the relative paths (https://github.com/nadav-dav/rekuire).",
+    "homepage": "https://github.com/malys/node-rekuirify.git",
+    "bugs": "https://github.com/malys/node-rekuirify/issues",
+    "author": {
+        "name": "malys",
+        "email": "",
+        "url": "http://malys.github.io/"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/malys/node-rekuirify"
+    },
+    "license": "MIT",
+    "files": [
+    "lib"
+  ],
+    "keywords": [],
+    "devDependencies": {
+        "browserify": "^4.1.11",
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-conventional-changelog": "^1.1.0",
+        "jshint-stylish": "^0.2.0",
+        "load-grunt-tasks": "^0.4.0",
+        "nodeunit": "^0.9.0",
+        "rekuire": "^0.1.5",
+        "time-grunt": "^0.3.2"
+    },
+    "scripts": {
+        "test": "nodeunit test/node-rekuirify_test.js"
+    },
+    "dependencies": {
+        "browserify": "^4.1.11",
+        "log4js": "^0.6.14",
+        "path": "^0.4.9",
+        "rekuire": "^0.1.5",
+        "through": "^2.3.4"
+    }
+}
