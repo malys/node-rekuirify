@@ -1,5 +1,5 @@
 {
-    "name": "node-rekuirify",
+    "name": "rekuirify",
     "version": "0.0.1",
     "main": "lib/node-rekuirify.js",
     "description": "'rekuire' transform for Browserify . 'rekuire' is basically node's 'require' without the relative paths (https://github.com/nadav-dav/rekuire).",
