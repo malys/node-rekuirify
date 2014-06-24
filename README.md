@@ -32,15 +32,21 @@ Use Grunt Browserify.
 transform: ['rekuirify']
 ```
 
+Folders description:
+```
+	- src
+        - one
+            - two -> sample.js
+```
+Require definition:
+``` js
+var sample=require('@sample.js'); // Compute relative path
+```
+equivalent to 
+``` js
+var sample=require('src/one/two/sample.js'); // Define relative path
 
 ```
-file
-	- 
-var sample=require('@sample');
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 see CHANGELOG.md
