@@ -3,12 +3,13 @@
 
 var fs = require('fs');
 
-if (process.env.REKUIRIFY_COV && process.env.HTIFY_COV == 1) {
+if (process.env.REKUIRIFY_COV && process.env.REKUIRIFY_COV == 1) {
     var nodeRekuirify = require('../lib-cov/node-rekuirify.js');
 
 } else {
     var nodeRekuirify = require('../lib/node-rekuirify.js');
 }
+
 
 var browserify = require('browserify');
 var logger = require('log4js').getLogger('rekuirify-test');
@@ -23,24 +24,33 @@ function getBuilder(rootPath, fileNam) {
 
 function handle(error) {
     logger.debug('Handle error');
-    throw error;
+    if (error) {
+        throw error;
+    }
 }
 
 // Generate a file with the specified path using Browserify and the Rekuirify transformation
-function generateFile(rootPath, outputFilePath, callback) {
+function generateFile(rootPath, outputFilePath, options, callback) {
     // use console output if there is no specified output file path
+
     var writeFileStream = process.output;
     try {
         if (outputFilePath) {
-
             writeFileStream = fs.createWriteStream(rootPath + outputFilePath);
         }
 
         // create a builder with default js file to browserify
         var builder = getBuilder(rootPath, outputFilePath);
 
-        builder.transform(nodeRekuirify).bundle()
-            .on('error', handle).pipe(writeFileStream).on('finish', function () {
+        var trans = nodeRekuirify;
+
+        if (!options) {
+            options = {};
+        }
+
+        builder.transform(trans, options).on('error', handle).bundle()
+            .on('error', handle).pipe(writeFileStream)
+            .on('finish', function () {
                 if (callback) {
                     callback();
                 }
@@ -72,11 +82,11 @@ function getFileDataAsString(rootPath, fileName, callback) {
 
 }
 
-function testFile(rootPath, testedFileName) {
+function testFile(rootPath, testedFileName, options) {
     // first step, get the expected file content as string
     getFileDataAsString(rootPath + 'references/', testedFileName, function (referencedContent) {
         // next, apply Rekuirify
-        generateFile(rootPath, 'test_' + testedFileName, function () {
+        generateFile(rootPath, 'test_' + testedFileName, options, function () {
             // Rekuirify is applied, get its content to compare with the expected one
             getFileDataAsString(rootPath, 'test_' + testedFileName, function (generatedContent) {
                 // remove the generated file, we don't need it anymore
@@ -98,7 +108,6 @@ function testFile(rootPath, testedFileName) {
     });
 }
 
-
 exports.testRequire = function (test) {
     test.expect(1);
     var compareRoot = './test/usecase/';
@@ -115,4 +124,31 @@ exports.testRekuire = function (test) {
     process.test = test;
     process.exit = test.done;
     testFile(compareRoot, testedFileName);
+};
+
+exports.testAlias = function (test) {
+    test.expect(1);
+    var compareRoot = './test/usecase/';
+    var testedFileName = 'testAlias.js';
+    process.test = test;
+    process.exit = test.done;
+    var options = {};
+    options.alias = {
+        'testAliasRek': 'test/usecase/1/2/3/4/5/testBrow.js'
+    };
+    testFile(compareRoot, testedFileName, options);
+};
+
+exports.testIgnore = function (test) {
+    var compareRoot = './test/usecase/';
+    var testedFileName = 'testIgnore.js';
+    process.test = test;
+    process.exit = test.done;
+    var options = {};
+    options.ignore = 'test/usecase/ignore';
+
+    process.test.throws(testFile(compareRoot, testedFileName, options));
+    test.done();
+
+
 };
