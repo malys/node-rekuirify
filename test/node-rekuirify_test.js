@@ -2,7 +2,14 @@
 'use strict';
 
 var fs = require('fs');
-var nodeRekuirify = require('../lib/node-rekuirify.js');
+
+if (process.env.REKUIRIFY_COV && process.env.HTIFY_COV == 1) {
+    var nodeRekuirify = require('../lib-cov/node-rekuirify.js');
+
+} else {
+    var nodeRekuirify = require('../lib/node-rekuirify.js');
+}
+
 var browserify = require('browserify');
 var logger = require('log4js').getLogger('rekuirify-test');
 
@@ -75,13 +82,13 @@ function testFile(rootPath, testedFileName) {
                 // remove the generated file, we don't need it anymore
                 fs.unlink(rootPath + 'test_' + testedFileName);
                 // remove \n\r to avoid issue between Window and Linux
-                logger.info('Compare files :' + rootPath + testedFileName + ' with ' + rootPath + 'test_' + testedFileName);
+                /* logger.info('Compare files :' + rootPath + testedFileName + ' with ' + rootPath + 'test_' + testedFileName);
                 logger.debug('---------------------------------------- Reference ----------------------------------------');
                 logger.debug(referencedContent);
                 logger.debug('---------------------------------------- Generated ----------------------------------------');
                 logger.debug(generatedContent);
                 logger.debug('----------------------------------------');
-
+*/
                 process.test.equal(referencedContent.replace(/[\n\r]/g, ''), generatedContent.replace(/[\n\r]/g, ''), 'File content should be equal');
                 process.exit();
 

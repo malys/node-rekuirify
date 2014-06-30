@@ -1,6 +1,6 @@
 {
     "name": "rekuirify",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "lib/node-rekuirify.js",
     "description": "'rekuire' transform for Browserify . 'rekuire' is basically node's 'require' without the relative paths (https://github.com/nadav-dav/rekuire).",
     "homepage": "https://github.com/malys/node-rekuirify.git",
@@ -29,12 +29,16 @@
         "load-grunt-tasks": "^0.4.0",
         "nodeunit": "^0.9.0",
         "time-grunt": "^0.3.2",
-        "log4js": "^0.6.14"
+        "log4js": "^0.6.14",
+        "jscoverage": "^0.5.4",
+        "nodeunit": "^0.9.0"
     },
     "scripts": {
-        "test": "nodeunit test/node-rekuirify_test.js"
+        "test": "nodeunit test",
+        "coveralls": "jscoverage lib && nodeunit --reporter=lcov test|coveralls"
     },
     "dependencies": {
+        "coveralls": "^2.10.1",
         "browserify": "^4.1.11",
         "path": "^0.4.9",
         "rekuire": "^0.1.5",

@@ -1,4 +1,7 @@
-# node-rekuirify [![Build Status](https://secure.travis-ci.org/malys/node-rekuirify.png?branch=master)](http://travis-ci.org/malys/node-rekuirify)
+# Rekuirify [![NPM version](https://badge.fury.io/js/rekuirify.png)](http://badge.fury.io/js/rekuirify)
+[![Build Status](https://travis-ci.org/malys/node-rekuirify.png)](https://travis-ci.org/malys/node-rekuirify)
+[![Coverage Status](https://coveralls.io/repos/malys/node-rekuirify/badge.png)](https://coveralls.io/r/malys/node-rekuirify)
+
 
 'rekuire' transform for Browserify . 'rekuire' is basically node's 'require' without the relative paths (https://github.com/nadav-dav/rekuire).
 
