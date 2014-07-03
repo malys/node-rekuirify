@@ -7,9 +7,9 @@ module.exports = {
 
 };
 },{}],2:[function(require,module,exports){
-require('./1/2/3/4/5/testBrow.js');
+require("..\\..\\test\\usecase\\1\\2\\3\\4\\5\\testBrow.js");
 
 function test() {
-    console.log('Hello Require');
+    console.log('Hola REKUIRE');
 }
-},{"./1/2/3/4/5/testBrow.js":1}]},{},[2])
+},{"..\\..\\test\\usecase\\1\\2\\3\\4\\5\\testBrow.js":1}]},{},[2])

@@ -41,7 +41,7 @@
         "coveralls": "^2.10.1",
         "browserify": "^4.1.11",
         "path": "^0.4.9",
-        "rekuire": "(git+https)://github.com/malys/rekuire.git",
+        "rekuire": "git+https://github.com/malys/rekuire.git",
         "through": "^2.3.4"
     }
 }
