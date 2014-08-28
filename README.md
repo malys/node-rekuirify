@@ -51,6 +51,14 @@ var sample=require('src/one/two/sample.js'); // Define relative path
 
 ```
 
+``` js
+var sample=require('@sample.js'); // Compute relative path
+
+var sample=require('@src/sample.js'); // Compute relative path to project's root
+```
+
+In the case of two files with similar name, you have to use the second example.
+
 ## Release History
 see CHANGELOG.md
 
