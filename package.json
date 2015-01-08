@@ -1,6 +1,9 @@
 {
     "name": "rekuirify",
     "version": "0.0.2",
+    "publishConfig": {
+        "registry": "https://nexus.lbg.office.lyra/content/repositories/npm-internal/"
+    },
     "main": "lib/node-rekuirify.js",
     "description": "'rekuire' transform for Browserify . 'rekuire' is basically node's 'require' without the relative paths (https://github.com/nadav-dav/rekuire).",
     "homepage": "https://github.com/malys/node-rekuirify.git",
@@ -13,7 +16,7 @@
 
     "repository": {
         "type": "git",
-        "url": "https://github.com/malys/node-rekuirify"
+        "url": "git@git.lbg.office.lyra:webui/node-rekuirify.git"
     },
     "license": "MIT",
     "files": [
